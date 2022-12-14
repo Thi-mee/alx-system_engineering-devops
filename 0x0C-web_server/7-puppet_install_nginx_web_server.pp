@@ -10,15 +10,19 @@ file { '/usr/share/nginx/html/index.html':
   content => 'hello world',
 }
 
-
-file { '/etc/nginx/conf.d/redirect.conf':
-  ensure  => 'file',
+file { '/etc/nginx/sites-available/default':
+  ensure => 'file',
   content => 'server {
-    listen 80/redirect_me;
-    server_name github.com;
-    return 301 http://www.github.com/thi-mee;
-  }',
+    listen 80;
+    listen [::]:80 default_server;
+    root   /etc/nginx/html;
+    index  index.html index.htm;
+    location /redirect_me {
+        return 301 http://github.com/;
+    }
+  }'
 }
+
 
 service { 'nginx':
   ensure => 'running',
