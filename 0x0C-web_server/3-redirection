@@ -2,9 +2,23 @@
 # Configure Nginx server so that /redirect_me is redirecting to another page
 # redirection must be a “301 Moved Permanently”
 
-ADD301_REDIRECT="\\\tlocation /redirect_me {\n\t\t return 301 https://google.com;\n>
-sudo apt-get update
-sudo apt-get -y install nginx
-#sudo service nginx start
-echo "Hello World!" | sudo tee /usr/share/nginx/html/index.html
-sudo sed -i "30i $ADD301_REDIRECT" /etc/nginx/sites-available/default #add at line >sudo service nginx start
+ADD301_REDIRECT="\\\tlocation /redirect_me {\n\t\t return 301 https://google.com;\n\t}"
+
+apt-get update
+apt-get -y install nginx
+
+mkdir /etc/nginx/html
+touch /etc/nginx/html/index.html
+echo "Hello World!" > /etc/nginx/html/index.html
+
+printf %s "server {
+    listen 80;
+    listen [::]:80 default_server;
+    root   /etc/nginx/html;
+    index  index.html index.htm;
+    location /redirect_me {
+        return 301 http://github.com/;
+    }
+  }" > /etc/nginx/sites-available/default
+
+service nginx restart

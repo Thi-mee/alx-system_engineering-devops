@@ -5,7 +5,18 @@
 #          curl http://100.26.133.196/   --> returns string "Hello World!"
 #          curl http://100.26.133.196/   --> returns header info
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-echo "Hello World!" | sudo tee /var/www/html/index.html
-sudo service nginx start
+apt-get -y update
+apt-get -y install nginx
+
+mkdir -p /etc/nginx/html
+touch /etc/nginx/html/index.html
+echo "Hello World!" > /etc/nginx/html/index.html
+
+printf "server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    root /etc/nginx/html;
+    index index.html index.htm;
+}" > /etc/nginx/sites-available/default
+
+service nginx restart
