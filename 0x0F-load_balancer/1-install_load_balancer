@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# installs and configures haproxy with round robin algorithm
+
+sudo apt-get install --no-install-recommends software-properties-common
+sudo add-apt-repository ppa:vbernat/haproxy-2.6
+
+sudo apt-get install haproxy=2.6.\*
+
+echo "ENABLED=1" >> /etc/default/haproxy
+
+printf %s "frontend http-in
+                bind *:80
+                default_backend serve
+
+        backend serve
+                balance roundrobin
+                server 58762-web-01 100.26.133.196:80 check
+                server 58762-web-02 54.83.130.196:80 check
+" >> /etc/haproxy/haproxy.cfg
+
+sudo systemctl start haproxy
+
