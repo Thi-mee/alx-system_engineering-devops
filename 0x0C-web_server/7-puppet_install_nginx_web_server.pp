@@ -5,9 +5,9 @@ package { 'nginx':
   ensure => 'installed',
 }
 
-file { '/usr/share/nginx/html/index.html':
+file { '/etc/nginx/html/index.html':
   ensure  => 'file',
-  content => 'hello world',
+  content => 'Hello World!',
 }
 
 file { '/etc/nginx/sites-available/default':
