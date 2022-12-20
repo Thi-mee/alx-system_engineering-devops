@@ -19,4 +19,4 @@ printf %s "frontend http-in
 " >> /etc/haproxy/haproxy.cfg
 
 sudo systemctl start haproxy
-
+sudo service haproxy restart
