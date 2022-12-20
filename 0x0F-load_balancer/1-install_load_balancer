@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 # Script that Installs and configures haproxy with round robin algorithm
 
+# updates a new ubuntu system
+apt-get -y update
+apt-get -y upgrade
+
+
 # Installs Haproxy on my server
-apt-get install --no-install-recommends software-properties-common
+apt-get -y install --no-install-recommends software-properties-common
 add-apt-repository ppa:vbernat/haproxy-2.6
-apt-get install haproxy=2.6.\*
+apt-get -y install haproxy=2.6.\*
 
 
 sed 'a\ENABLED=1' /etc/default/haproxy
