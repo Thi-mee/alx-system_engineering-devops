@@ -1,0 +1,12 @@
+# reset
+sudo sed -i "s/IPV6=no/IPV6=yes/" /etc/default/ufw
+sudo ufw default allow outgoing
+sudo ufw default deny incoming
+
+# configure
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw allow https
+
+# start
+sudo ufw enable
