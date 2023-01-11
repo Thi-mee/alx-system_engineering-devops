@@ -1,4 +1,4 @@
-## HTTPS SSL
+# 0x10 - HTTPS SSl
 > HTTPS is a secure version of HTTP, used to encrypt all communication between
 > the client and the website servers. When setting up HTTPS on our website,
 > we should place the certificate on our website web server(s). Resources:
@@ -20,8 +20,3 @@ Files that start with:
 * Load Balancer: lb-01, (www) HAproxy; Important folders /etc/letsencrypt/live/www.melissax.online/*
 * Domain Name: from [Gandi](https://www.gandi.net/en)
 * Style guidelines: [Shellscript for Bash](https://github.com/koalaman/shellcheck)
-
----
-### Authors
-Melissa Ng [![M](https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/30px-Twitter_Bird.svg.png)](https://twitter.com/MelissaNg__)
-
